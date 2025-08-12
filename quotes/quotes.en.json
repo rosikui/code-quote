@@ -1,0 +1,62 @@
+[
+  {
+    "text": "The best error message is the one that never shows up.",
+    "author": "Thomas Fuchs",
+    "tags": ["error-handling", "ux", "programming"],
+    "lang": "en"
+  },
+  {
+    "text": "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.",
+    "author": "Martin Fowler",
+    "tags": ["clean-code", "readability", "programming"],
+    "lang": "en"
+  },
+  {
+    "text": "First, solve the problem. Then, write the code.",
+    "author": "John Johnson",
+    "tags": ["problem-solving", "planning", "programming"],
+    "lang": "en"
+  },
+  {
+    "text": "Code is like humor. When you have to explain it, it's bad.",
+    "author": "Cory House",
+    "tags": ["clean-code", "simplicity", "programming"],
+    "lang": "en"
+  },
+  {
+    "text": "The only way to learn a new programming language is by writing programs in it.",
+    "author": "Dennis Ritchie",
+    "tags": ["learning", "practice", "programming"],
+    "lang": "en"
+  },
+  {
+    "text": "Sometimes it pays to stay in bed on Monday, rather than spending the rest of the week debugging Monday's code.",
+    "author": "Dan Salomon",
+    "tags": ["debugging", "planning", "programming"],
+    "lang": "en"
+  },
+  {
+    "text": "It's not a bug – it's an undocumented feature.",
+    "author": "Anonymous",
+    "tags": ["humor", "bugs", "programming"],
+    "lang": "en"
+  },
+  {
+    "text": "The most damaging phrase in the language is 'We've always done it this way!'",
+    "author": "Grace Hopper",
+    "tags": ["innovation", "change", "programming"],
+    "lang": "en"
+  },
+  {
+    "text": "Programming isn't about what you know; it's about what you can figure out.",
+    "author": "Chris Pine",
+    "tags": ["problem-solving", "learning", "programming"],
+    "lang": "en"
+  },
+  {
+    "text": "The best way to predict the future is to implement it.",
+    "author": "David Heinemeier Hansson",
+    "tags": ["innovation", "action", "programming"],
+    "lang": "en"
+  }
+]
