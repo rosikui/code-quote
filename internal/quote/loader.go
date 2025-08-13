@@ -2,12 +2,19 @@ package quote
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
 
 	"gopkg.in/yaml.v3"
+)
+
+var (
+	ErrUnsupportedFormat = errors.New("unsupported file format")
+	ErrTextRequired      = errors.New("text is required")
+	ErrAuthorRequired    = errors.New("author is required")
 )
 
 // Quote represents a single quote
@@ -40,7 +47,7 @@ func (l *Loader) LoadFromFile(filePath string) ([]Quote, error) {
 	case ".yaml", ".yml":
 		return l.parseYAML(data)
 	default:
-		return nil, fmt.Errorf("unsupported file format: %s", ext)
+		return nil, fmt.Errorf("%w: %s", ErrUnsupportedFormat, ext)
 	}
 }
 
@@ -97,10 +104,10 @@ func (l *Loader) parseYAML(data []byte) ([]Quote, error) {
 func (l *Loader) validateQuotes(quotes []Quote) error {
 	for i, quote := range quotes {
 		if quote.Text == "" {
-			return fmt.Errorf("quote at index %d: text is required", i)
+			return fmt.Errorf("quote at index %d: %w", i, ErrTextRequired)
 		}
 		if quote.Author == "" {
-			return fmt.Errorf("quote at index %d: author is required", i)
+			return fmt.Errorf("quote at index %d: %w", i, ErrAuthorRequired)
 		}
 	}
 	return nil

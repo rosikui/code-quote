@@ -5,10 +5,11 @@ import (
 	"encoding/json"
 	"log"
 
-	"github.com/rosikui/code-quote/internal/quote"
-	"github.com/rosikui/code-quote/internal/term"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
+
+	"github.com/rosikui/code-quote/internal/quote"
+	"github.com/rosikui/code-quote/internal/term"
 )
 
 var fs embed.FS
@@ -38,13 +39,13 @@ func init() {
 	rootCmd.Flags().Bool("show-tags", false, "Show tags after author")
 
 	// Bind flags to viper
-	viper.BindPFlag("file", rootCmd.Flags().Lookup("file"))
-	viper.BindPFlag("tag", rootCmd.Flags().Lookup("tag"))
-	viper.BindPFlag("lang", rootCmd.Flags().Lookup("lang"))
-	viper.BindPFlag("daily", rootCmd.Flags().Lookup("daily"))
-	viper.BindPFlag("no-color", rootCmd.Flags().Lookup("no-color"))
-	viper.BindPFlag("markdown", rootCmd.Flags().Lookup("markdown"))
-	viper.BindPFlag("show-tags", rootCmd.Flags().Lookup("show-tags"))
+	_ = viper.BindPFlag("file", rootCmd.Flags().Lookup("file"))
+	_ = viper.BindPFlag("tag", rootCmd.Flags().Lookup("tag"))
+	_ = viper.BindPFlag("lang", rootCmd.Flags().Lookup("lang"))
+	_ = viper.BindPFlag("daily", rootCmd.Flags().Lookup("daily"))
+	_ = viper.BindPFlag("no-color", rootCmd.Flags().Lookup("no-color"))
+	_ = viper.BindPFlag("markdown", rootCmd.Flags().Lookup("markdown"))
+	_ = viper.BindPFlag("show-tags", rootCmd.Flags().Lookup("show-tags"))
 }
 
 func runQuote(cmd *cobra.Command, args []string) error {

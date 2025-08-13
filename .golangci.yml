@@ -1,0 +1,145 @@
+version: "2"
+run:
+  go: "1.24"
+linters:
+  enable:
+    - err113
+    - gocritic
+    - gosec
+    - misspell
+    - noctx
+    - prealloc
+    - unparam
+    - wastedassign
+  disable:
+    - asciicheck
+    - dupl
+    - durationcheck
+    - errname
+    - errorlint
+    - exhaustive
+    - forbidigo
+    - gochecknoglobals
+    - gochecknoinits
+    - gochecksumtype
+    - gocognit
+    - goconst
+    - gocyclo
+    - godot
+    - godox
+    - goheader
+    - gomoddirectives
+    - gomodguard
+    - goprintffuncname
+    - lll
+    - makezero
+    - mnd
+    - nakedret
+    - nolintlint
+    - predeclared
+    - promlinter
+    - revive
+    - tagliatelle
+    - thelper
+    - tparallel
+    - unconvert
+    - wrapcheck
+    - wsl
+  settings:
+    dupl:
+      threshold: 100
+    goconst:
+      min-len: 2
+      min-occurrences: 3
+    gocyclo:
+      min-complexity: 15
+    lll:
+      line-length: 140
+    misspell:
+      locale: US
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+      - std-error-handling
+    rules:
+      - linters:
+          - asciicheck
+          - deadcode
+          - dupl
+          - durationcheck
+          - err113
+          - errcheck
+          - errname
+          - errorlint
+          - exhaustive
+          - exportloopref
+          - forbidigo
+          - gochecknoglobals
+          - gochecknoinits
+          - gochecksumtype
+          - gocognit
+          - goconst
+          - gocritic
+          - gocyclo
+          - godot
+          - godox
+          - goheader
+          - gomoddirectives
+          - gomodguard
+          - goprintffuncname
+          - gosec
+          - govet
+          - ineffassign
+          - lll
+          - makezero
+          - misspell
+          - mnd
+          - nakedret
+          - noctx
+          - nolintlint
+          - prealloc
+          - predeclared
+          - promlinter
+          - revive
+          - rowserrcheck
+          - sqlclosecheck
+          - staticcheck
+          - structcheck
+          - tagliatelle
+          - tenv
+          - thelper
+          - tparallel
+          - unconvert
+          - unparam
+          - unused
+          - varcheck
+          - wastedassign
+          - whitespace
+          - wrapcheck
+          - wsl
+        path: _test\.go
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
+issues:
+  max-issues-per-linter: 0
+  max-same-issues: 0
+formatters:
+  enable:
+    - gofmt
+    - goimports
+  settings:
+    goimports:
+      local-prefixes:
+        - github.com/rosikui/code-quote
+  exclusions:
+    generated: lax
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
+      - _test\.go
