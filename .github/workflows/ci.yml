@@ -76,6 +76,7 @@ jobs:
           else
             ./code-quote --help
           fi
+        shell: bash
 
   security:
     name: Security Scan
