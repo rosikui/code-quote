@@ -72,8 +72,10 @@ jobs:
       - name: Test build
         run: |
           if [ "$RUNNER_OS" = "Windows" ]; then
-            ./code-quote.exe --help
+            ls -la
+            .\code-quote.exe --help
           else
+            ls -la
             ./code-quote --help
           fi
         shell: bash
