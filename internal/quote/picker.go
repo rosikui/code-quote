@@ -1,11 +1,13 @@
 package quote
 
 import (
-	"fmt"
+	"errors"
 	"math/rand"
 	"strings"
 	"time"
 )
+
+var ErrNoQuotesAvailable = errors.New("no quotes available")
 
 // Picker handles quote selection and filtering
 type Picker struct {
@@ -20,9 +22,10 @@ func NewPicker(quotes []Quote) *Picker {
 // PickRandom selects a random quote
 func (p *Picker) PickRandom() (*Quote, error) {
 	if len(p.quotes) == 0 {
-		return nil, fmt.Errorf("no quotes available")
+		return nil, ErrNoQuotesAvailable
 	}
 
+	// nolint:gosec // Using math/rand for quote selection is acceptable
 	index := rand.Intn(len(p.quotes))
 	return &p.quotes[index], nil
 }
@@ -30,15 +33,17 @@ func (p *Picker) PickRandom() (*Quote, error) {
 // PickDaily selects a quote based on the current date (same quote for the same day)
 func (p *Picker) PickDaily() (*Quote, error) {
 	if len(p.quotes) == 0 {
-		return nil, fmt.Errorf("no quotes available")
+		return nil, ErrNoQuotesAvailable
 	}
 
 	// Use current date as seed for consistent daily selection
 	now := time.Now()
 	seed := now.Year()*10000 + int(now.Month())*100 + now.Day()
-	rand.Seed(int64(seed))
+	// nolint:gosec // Using math/rand for daily quote selection is acceptable
+	r := rand.New(rand.NewSource(int64(seed)))
 
-	index := rand.Intn(len(p.quotes))
+	// nolint:gosec // Using math/rand for quote selection is acceptable
+	index := r.Intn(len(p.quotes))
 	return &p.quotes[index], nil
 }
 
