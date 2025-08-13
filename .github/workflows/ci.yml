@@ -73,7 +73,7 @@ jobs:
         run: |
           if [ "$RUNNER_OS" = "Windows" ]; then
             ls -la
-            .\code-quote.exe --help
+            ./code-quote.exe --help
           else
             ls -la
             ./code-quote --help
