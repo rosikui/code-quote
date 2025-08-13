@@ -29,10 +29,11 @@ jobs:
         run: go mod download
 
       - name: Run linter
-        uses: golangci/golangci-lint-action@v4
+        uses: golangci/golangci-lint-action@v8
         with:
-          version: v2.0.1
-          args: --timeout=5m --out-format=colored-line-number
+          version: v2.1
+          args: --timeout=5m
+          problem-matchers: true
 
       - name: Run tests
         run: go test -v -race -coverprofile=coverage.txt -covermode=atomic ./...
