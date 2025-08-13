@@ -1,0 +1,55 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+env:
+  GO_VERSION: "1.24"
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: ${{ env.GO_VERSION }}
+          cache: true
+
+      - name: Install dependencies
+        run: go mod download
+
+      - name: Run tests
+        run: go test -v ./...
+
+      - name: Build for multiple platforms
+        run: |
+          GOOS=linux GOARCH=amd64 go build -o dist/code-quote-linux-amd64 .
+          GOOS=linux GOARCH=arm64 go build -o dist/code-quote-linux-arm64 .
+          GOOS=darwin GOARCH=amd64 go build -o dist/code-quote-darwin-amd64 .
+          GOOS=darwin GOARCH=arm64 go build -o dist/code-quote-darwin-arm64 .
+          GOOS=windows GOARCH=amd64 go build -o dist/code-quote-windows-amd64.exe .
+          GOOS=windows GOARCH=arm64 go build -o dist/code-quote-windows-arm64.exe .
+
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/code-quote-linux-amd64
+            dist/code-quote-linux-arm64
+            dist/code-quote-darwin-amd64
+            dist/code-quote-darwin-arm64
+            dist/code-quote-windows-amd64.exe
+            dist/code-quote-windows-arm64.exe
+          draft: false
+          prerelease: false
+          generate_release_notes: true 
